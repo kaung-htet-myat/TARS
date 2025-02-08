@@ -1,4 +1,7 @@
 import os
+import io
+import httpx
+import base64
 import logging
 from dotenv import load_dotenv
 from telegram import Update
@@ -32,19 +35,28 @@ async def start(update: Update, context: CallbackContext) -> None:
 async def debug(update: Update, context: CallbackContext) -> None:
     user_text = update.message.text
     user_id = update.effective_user.id
+    user_photo = update.message.photo
+    user_attachment = update.message.effective_attachment
     
     if str(user_id) == USER_ID:
-        await update.message.reply_text(f"Hi Hi my friend")
-    else:
-        await update.message.reply_text(f"Can't talk to you")
+        if not user_attachment == None and "image" in user_attachment.mime_type:
+            file = await context.bot.get_file(user_attachment.file_id)
+            ba = await file.download_as_bytearray()
+            logger.info(ba)
+        
+    #     await update.message.reply_text(f"Hi Hi my friend")
+    # else:
+    #     await update.message.reply_text(f"Can't talk to you")
     
-    await update.message.reply_text(f"You said and TARS repeat: {user_text}")
+    # await update.message.reply_text(f"You said and TARS repeat: {user_text}")
 
 
 async def receive(update: Update, context: CallbackContext) -> None:
     chat_id = str(update.message.chat.id)
     user_id = str(update.effective_user.id)
     user_text = update.message.text
+    user_photo = update.message.photo
+    user_attachment = update.message.effective_attachment
     
     if user_id == USER_ID:
         try:
@@ -64,7 +76,37 @@ async def receive(update: Update, context: CallbackContext) -> None:
                 primer_prompt = get_primer_prompt()
                 messages.append(SystemMessage(content=primer_prompt))
 
-            messages.append(HumanMessage(content=user_text))
+            if not user_text == None:
+                messages.append(HumanMessage(content=user_text))
+                
+            if not len(user_photo) == 0:
+                photo = user_photo[-1]  # Get the highest quality image
+                file = await context.bot.get_file(photo.file_id)
+                ba = await file.download_as_bytearray()
+                
+                image_data = base64.b64encode(ba).decode("utf-8")
+                messages.append(HumanMessage(
+                    content=[
+                        {
+                            "type": "image_url",
+                            "image_url": {"url": f"data:image/jpeg;base64,{image_data}"},
+                        },
+                    ]
+                ))
+            
+            if not user_attachment == None and "image" in user_attachment.mime_type:
+                file = await context.bot.get_file(user_attachment.file_id)
+                ba = await file.download_as_bytearray()
+                
+                image_data = base64.b64encode(ba).decode("utf-8")
+                messages.append(HumanMessage(
+                    content=[
+                        {
+                            "type": "image_url",
+                            "image_url": {"url": f"data:image/jpeg;base64,{image_data}"},
+                        },
+                    ]
+                ))
 
             response = AGENT_EXECUTOR.invoke(
                 {"messages": messages},
