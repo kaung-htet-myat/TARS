@@ -1,6 +1,4 @@
 import os
-import io
-import httpx
 import base64
 import logging
 from dotenv import load_dotenv
