@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 python:3.13-slim
+FROM --platform=linux/arm64 python:3.13-slim
 
 RUN apt-get update && \
     apt-get install -y \
@@ -28,4 +28,4 @@ ENV \
 COPY . /app
 
 # Run the application.
-CMD ["/app/.venv/bin/fastapi", "run", "app/app.py", "--port", "8080", "--host", "0.0.0.0"]
+CMD ["/app/.venv/bin/python", "main.py", "--port", "8081", "--host", "0.0.0.0"]
