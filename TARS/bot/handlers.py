@@ -29,6 +29,7 @@ AGENT_EXECUTOR = get_llm_agent(openai_api_key=settings.openai_api_key)
 
 
 async def start(update: Update, context: CallbackContext) -> None:
+    logger.info(f"New user detected: {update.effective_user.id}")
     keyboard = [[InlineKeyboardButton(tz, callback_data=tz)] for tz in TIMEZONES]
     reply_markup = InlineKeyboardMarkup(keyboard)
     if str(update.effective_user.id) in settings.user_ids:
@@ -76,9 +77,6 @@ async def receive(update: Update, context: CallbackContext) -> None:
             }
 
             conversation = settings.sessions.get(user_id)
-
-            logger.info(f"timezone: {settings.user_timezone.get(user_id)}")
-            logger.info(conversation.get_state())
 
             if user_text is not None:
                 conversation.add_user_message(user_text)
