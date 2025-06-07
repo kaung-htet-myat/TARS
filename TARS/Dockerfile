@@ -7,10 +7,9 @@ RUN apt-get update && \
 # Install uv.
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
-ARG USER_ID
+ARG USER_IDS
 ARG BOT_TOKEN
 ARG OPENAI_API_KEY
-ARG TIMEZONE
 
 COPY ./uv.lock /app/uv.lock
 COPY ./pyproject.toml /app/pyproject.toml
@@ -20,10 +19,9 @@ WORKDIR /app
 RUN uv sync --frozen --no-cache
 
 ENV \
-  USER_ID=${USER_ID} \
+  USER_IDS=${USER_IDS} \
   BOT_TOKEN=${BOT_TOKEN} \
-  OPENAI_API_KEY=${OPENAI_API_KEY} \
-  TIMEZONE=${TIMEZONE}
+  OPENAI_API_KEY=${OPENAI_API_KEY}
 
 COPY . /app
 
