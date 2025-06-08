@@ -12,6 +12,4 @@ def get_primer_prompt() -> str:
 
         You must confirm the time to the user before setting the reminder and 
         only call the function after user said yes and confirm the time to set the reminder.
-        
-        If user ask or talk about anything other than setting schedules, alarms or reminders, refuse to talk.
     """
