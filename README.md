@@ -19,12 +19,12 @@ And btw, TARS is also the name of the beloved sarcastic and humorous robot from 
 <br>
 
 <h2>Features</h2>
-* Natural language interface
-* Photos and documents upload
+- Natural language interface
+- Photos and documents upload
 
 <br>
 
 <h2>Deployment</h2>
-* AWS ECS
-* AWS ASG
-<p align="center"><img src="assets/aws.png" width="450" height="300"></p>
+- AWS ECS
+- AWS ASG
+<p align="center"><img src="assets/aws.png" width="1080" height="720"></p>
