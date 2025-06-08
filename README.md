@@ -11,3 +11,18 @@ TARS
 Since I use telegram as the main source of communication tool with my colleagues, friends and family, telegram is always up and running on all my IT devices. So, setting reminders and scheduling later events and getting them as telegram messages is pretty convenient to me. That's why I created this bot.
 <br>
 And btw, TARS is also the name of the beloved sarcastic and humorous robot from Interstellar ;)
+<br>
+<p align="center"><video width="200" height="500" src="assets/screen_record.mp4" controls></video></p>
+
+<br>
+
+<h2>Features</h2>
+* Natural language interface
+* Photos and documents upload
+
+<br>
+
+<h2>Deployment</h2>
+* AWS ECS
+* AWS ASG
+<p align="center"><img src="assets/aws.png" width="350" height="200"></p>
