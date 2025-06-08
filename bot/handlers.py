@@ -95,7 +95,7 @@ async def receive(update: Update, context: CallbackContext) -> None:
                 ]
                 conversation.add_user_message(content)
 
-            if user_attachment is not None and "image" in user_attachment.mime_type:
+            elif user_attachment is not None and "image" in user_attachment.mime_type:
                 file = await context.bot.get_file(user_attachment.file_id)
                 ba = await file.download_as_bytearray()
 
