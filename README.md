@@ -30,4 +30,4 @@ And btw, TARS is also the name of the beloved sarcastic and humorous robot from 
 - AWS ECS
 - AWS ASG
 
-<p align="center"><img src="assets/aws.png" width="960" height="600"></p>
+<p align="center"><img src="assets/aws.png" width="960" height="480"></p>
