@@ -1,3 +1,5 @@
+
+
 <!-- ![TARS Avatar](assets/TARS.png) -->
 <p align="center"><img src="assets/TARS.png" width="300" height="300"></p>
 
@@ -12,7 +14,7 @@ Since I use telegram as the main source of communication tool with my colleagues
 <br>
 And btw, TARS is also the name of the beloved sarcastic and humorous robot from Interstellar ;)
 <br>
-<p align="center"><video width="200" height="500" src="assets/screen_record.mp4" controls></video></p>
+<p align="center"><video width="200" height="500" src="https://github.com/user-attachments/assets/295eecd9-cca0-45c6-8d59-44a67b49de65" controls></video></p>
 
 <br>
 
@@ -25,4 +27,4 @@ And btw, TARS is also the name of the beloved sarcastic and humorous robot from 
 <h2>Deployment</h2>
 * AWS ECS
 * AWS ASG
-<p align="center"><img src="assets/aws.png" width="350" height="200"></p>
+<p align="center"><img src="assets/aws.png" width="450" height="300"></p>
